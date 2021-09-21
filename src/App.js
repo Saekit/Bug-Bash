@@ -3,15 +3,19 @@ import "./index.css";
 import { Hamburger, User } from "./assets/svg";
 import cellPhone from "./assets/smartphone.png";
 import { Text } from "./components/text";
-import { Button } from "./components/button";
-import { faq, keyPoints } from "./components/utils";
+import { faq, keyPoints, SHOW_PHONE } from "./components/utils";
 import { Point } from "./components/point";
 import { Accordian } from "./components/accordian";
+import { Modal } from "./components/modal";
 
 export default function App() {
   const [bannerCopy, setBannerCopy] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+
   const bannerUrl =
     "https://baconipsum.com/api/?type=all-meat&sentences=1&start-with-lorem=1";
+
+  const modalImage = "https://picsum.photos/200";
 
   useEffect(() => {
     fetch(bannerUrl)
@@ -26,16 +30,17 @@ export default function App() {
           <div style={{ display: "flex" }}>
             <Hamburger style={{ width: 15, cursor: "pointer" }} />
             <div className="header-links">
-              <Text style={{cursor: "pointer"}}>Blonk Heeths</Text>
-              <div style={{display: "flex", alignItems: "center"}}>
-              <User style={{height: 15, marginRight: 6}} />
-              <Text style={{ textAlign: "right", cursor: "pointer" }}>Sign In</Text>
+              <Text style={{ cursor: "pointer" }}>Blonk Heeths</Text>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <User style={{ height: 15, marginRight: 6 }} />
+                <Text style={{ textAlign: "right", cursor: "pointer" }}>
+                  Sign In
+                </Text>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="phantom-header" />
 
       <div className="layout">
         {bannerCopy && (
@@ -49,20 +54,22 @@ export default function App() {
               Welcome to Blonk Heeths Pharmacy
             </Text>
             <Text>A digital pharmacy with delivery to your doorstep</Text>
-            <Button>Get Started</Button>
+            <button onClick={() => setOpenModal(true)}>Get Started</button>
             <Text style={{ fontSize: 10, color: "gray" }}>
               Available with a prescription
             </Text>
           </div>
-          <div className="hero-right">
-            <img src={cellPhone} alt="cellphone" style={{ height: 400 }} />
-          </div>
+          {SHOW_PHONE && (
+            <div className="hero-right">
+              <img src={cellPhone} alt="cellphone" style={{ height: 400 }} />
+            </div>
+          )}
         </div>
         <div className="points-section">
-        <div className="points-container">
-          {keyPoints.map((point, idx) => (
-            <Point key={idx} point={point} />
-          ))}
+          <div className="points-container">
+            {keyPoints.map((point, idx) => (
+              <Point key={idx} point={point} />
+            ))}
           </div>
         </div>
         <div className="faq-section">
@@ -72,6 +79,9 @@ export default function App() {
           ))}
         </div>
       </div>
+      {openModal && (
+        <Modal close={() => setOpenModal(false)} image={modalImage} />
+      )}
     </div>
   );
 }
