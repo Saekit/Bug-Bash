@@ -1,3 +1,13 @@
+See https://blinkhealth.atlassian.net/wiki/spaces/INTERVIEW/pages/2937651268/FE+Interview+Bug+Bash
+
+Completed FE Bug Bash Interview should look like:
+![fe-bug-bash-complete-1](https://user-images.githubusercontent.com/42038008/134228939-0e80f6f2-7895-4711-8180-fa07f5910f66.png)
+![fe-bug-bash-complete-2](https://user-images.githubusercontent.com/42038008/134228945-c1183fad-5354-4689-b622-159d46966bf7.png)
+
+When Get Started is clicked, modal opens:
+![fe-bug-bash-complete-3](https://user-images.githubusercontent.com/42038008/134228955-838ef31f-2c51-4076-9e30-6b9d1a33299b.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
